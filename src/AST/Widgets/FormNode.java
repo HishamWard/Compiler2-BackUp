@@ -9,6 +9,6 @@ public class FormNode extends WidgetNode {
 
     @Override
     public void accept(ASTVisitor visitor) {
-//        visitor.visitForm(this);
+        visitor.visitForm(this);
     }
 }
