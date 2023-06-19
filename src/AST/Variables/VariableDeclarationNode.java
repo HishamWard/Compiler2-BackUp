@@ -9,16 +9,17 @@ public class VariableDeclarationNode extends Node {
 	public int scope;
 	public Type type;
 	public String name;
+	public String value;
 
 	public Node initializer;
 
-	public VariableDeclarationNode(Integer scope,
-								   Type type, String name, Node initializer, Integer position){
+	public VariableDeclarationNode(Integer scope, Type type, String name, Node initializer, Integer position,String value){
 		this.scope = scope;
 		this.type = type;
 		this.name = name;
 		this.initializer = initializer;
 		this.position = position;
+		this.value = value;
 
 		this.addChild(initializer);
 	}

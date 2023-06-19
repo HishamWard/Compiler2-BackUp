@@ -52,6 +52,9 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
                 // If a build method was provided, CONGRATS! This is a widget.
                 if (buildMethod != null) {
                     doNotVisitExpressionAgain = true;
+                    for (int k=0;k<classMemberDeclarations.size()-1;k++){
+                        programNode.addChild((Node) visit(classMemberDeclarations.get(k)));
+                    }
                     WidgetNode widgetNode = (WidgetNode) visitWidget(buildMethod.widget());
 
                     // This will also be the name of the generated HTML file.
@@ -166,7 +169,17 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         for (Flotter.TextPropertyContext TextProperty : ctx.textProperties().textProperty()) {
             if (TextProperty.SingleLineString() != null) {
                 text = TextProperty.SingleLineString().getText();
-            } else if (TextProperty.textStyle() != null) {
+            }
+            if (TextProperty.IDENTIFIER() != null) {
+                String name = TextProperty.IDENTIFIER().getText();
+                for (int i = symbolTables.peek().getTableScope(); i >= 0; i--) {
+                    if (symbolTables.peek().variableExists(name, i)) {
+                        text = symbolTables.peek().getVariable(name,i).value;
+                        break;
+                    }
+                }
+            }
+            if (TextProperty.textStyle() != null) {
                 style = (TextStyleNode) visit(TextProperty.textStyle());
             }
         }
@@ -181,7 +194,21 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
 
         for (Flotter.TextStylePropertyContext textStyleProperty : ctx.textStyleProperties().textStyleProperty()) {
             if (textStyleProperty.color() != null) {
-                style.color = textStyleProperty.color().colorName.getText().toLowerCase();
+                if (textStyleProperty.color().colorName != null)
+                    style.color = textStyleProperty.color().colorName.getText().toLowerCase();
+                else{
+                    String name = textStyleProperty.color().IDENTIFIER().getText();
+                    String textWithNoQuotes="";
+                    for (int i = symbolTables.peek().getTableScope(); i >= 0; i--) {
+                        if (symbolTables.peek().variableExists(name, i)) {
+                            String temp = symbolTables.peek().getVariable(name,i).value;
+                            textWithNoQuotes = temp.replace("Colors.","");
+                            textWithNoQuotes = textWithNoQuotes.replace("\"", "").replace("'", "");
+                            break;
+                        }
+                    }
+                    style.color = textWithNoQuotes;
+                }
             }
             if (textStyleProperty.fontWeight() != null) {
                 style.fontWeight = Float.parseFloat(textStyleProperty.fontWeight().NUMBER().getText());
@@ -357,11 +384,12 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         for (Flotter.Class_member_declarationContext propertyContext : ctx.class_member_declaration()) {
             if (propertyContext.function() != null)
                 functions.add((Node) visit(propertyContext));
-            else if (propertyContext.class_build_method() != null)
+            if (propertyContext.class_build_method() != null)
                 functions.add((Node) visitClass_build_method(propertyContext.class_build_method()));
-            else if (propertyContext.decl() != null) {
+            if (propertyContext.decl() != null) {
                 declarations.add(visitDecl(propertyContext.decl()));
-            } else if (propertyContext.function_call() != null) {
+            }
+            if (propertyContext.function_call() != null) {
                 functionCalls.add(visitFunction_call(propertyContext.function_call()));
             }
         }
@@ -485,12 +513,12 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
     public VariableDeclarationNode visitDecl(Flotter.DeclContext ctx) {
         Type type = visitVariable_type(ctx.variable_type());
         String name = ctx.IDENTIFIER().getText();
-        Node initializer;
+        VariableValueNode initializer;
 
         int currentLine = ctx.getStart().getLine();
 
         if (ctx.variable_value() != null) {
-            initializer = (Node) visit(ctx.variable_value());
+            initializer = (VariableValueNode) visit(ctx.variable_value());
             VariableValueNode assignee = visitVariable_value(ctx.variable_value());
             if (assignee.getType().toString() != type.toString() && type.toString() != "dynamic") {
                 throw new RuntimeException("Line no." + currentLine + " Variable " + name + " is not a " + assignee.getType());
@@ -501,7 +529,7 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
 
         int scope = symbolTables.peek().getTableScope();
 
-        VariableDeclarationNode ans = new VariableDeclarationNode(scope, type, name, initializer, currentLine);
+        VariableDeclarationNode ans = new VariableDeclarationNode(scope, type, name, initializer, currentLine,initializer.getValue());
         symbolTables.peek().addVariable(ans);
         return ans;
     }
@@ -523,8 +551,11 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         if (declared != null) {
             VariableValueNode assignee = visitVariable_value(ctx.variable_value());
 
+
             if (assignee.getType() != declared.type.toString()) {
                 throw new RuntimeException("Line no." + currentLine + " Variable " + name + " is not a " + assignee.getType());
+            } else {
+                declared.value = assignee.getValue();
             }
         } else {
             throw new RuntimeException("Line no." + currentLine + " Variable \"" + name + "\" does not exist.");

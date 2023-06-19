@@ -21,7 +21,7 @@ mainCrossAxisAlignmentProperty: START | END | CENTER | SPACE_BETWEEN | SPACE_ARO
 
 text : Text OPENP textProperties? CLOSEP ;
 textProperties: textProperty (COMMA textProperty)* COMMA?;
-textProperty: (SingleLineString | textStyle);
+textProperty: (SingleLineString | IDENTIFIER | textStyle);
 
 textStyle: Style COLON TextStyle OPENP textStyleProperties CLOSEP;
 textStyleProperties: textStyleProperty (COMMA textStyleProperty)* COMMA?;
@@ -29,7 +29,7 @@ textStyleProperty: (fontSize | color | fontWeight);
 
 fontSize: FontSize COLON NUMBER;
 fontWeight: FontWeight COLON NUMBER;
-color: Color COLON ColorsDot colorName=IDENTIFIER;
+color: Color COLON (ColorsDot colorName=IDENTIFIER | IDENTIFIER);
 
 container : Container OPENP containerProperties? CLOSEP ;
 containerProperties : containerProperty (COMMA containerProperty)* COMMA?;

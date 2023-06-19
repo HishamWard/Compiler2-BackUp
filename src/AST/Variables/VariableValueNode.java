@@ -29,4 +29,8 @@ public class VariableValueNode extends Node {
     protected String nodeInfo() {
         return String.format("%s|{Type: %s|Value: %s}", this.getClass().getSimpleName(), type, value == null ? null : value.replaceAll("\"", ""));
     }
+
+    public String getValue() {
+        return value;
+    }
 }
