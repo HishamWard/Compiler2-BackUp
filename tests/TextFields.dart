@@ -34,40 +34,10 @@ class TextFields extends StatelessWidget {
                   style: TextStyle(fontSize: 30, color: Colors.black,),
                 ),
               ),
-              Row(children: [
-                Text(
-                  'Text 1: ',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.Black,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: 5, top: 0, right: 5, bottom: 0),
-                  child: TextField(
-                    controller: firstController,
-                  ),),
-                ElevatedButton(
-                    child: Text('Go', style: TextStyle(
-                      color: Colors.Black,
-                    ),),
-                    onPressed: () {
-                      dynamic textFieldParameter = firstController.text;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              FirstScreen(name: "textFieldParameter"),
-                        ),
-                      );
-                    }),
-              ]),
-              Padding(
-                padding: EdgeInsets.only(left: 0, top: 60, right: 0, bottom: 0),
+              Form(
                 child: Row(children: [
                   Text(
-                    'Text 2: ',
+                    'Text 1: ',
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.Black,
@@ -77,23 +47,63 @@ class TextFields extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: 5, top: 0, right: 5, bottom: 0),
                     child: TextField(
-                      controller: secondController,
+                      controller: firstController,
+                      decoration: InputDecoration(
+                        labelText: FirstFieldByIyadoooooo
+                      )
                     ),),
                   ElevatedButton(
                       child: Text('Go', style: TextStyle(
                         color: Colors.Black,
                       ),),
                       onPressed: () {
-                        dynamic textFieldParameter = secondController.text;
+                        dynamic textFieldParameter = firstController.text;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                SecondScreen(name: "textFieldParameter"),
+                                FirstScreen(name: "textFieldParameter"),
                           ),
                         );
                       }),
                 ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 0, top: 60, right: 0, bottom: 0),
+                child: Form(
+                  child: Row(children: [
+                    Text(
+                      'Text 2: ',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.Black,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 5, top: 0, right: 5, bottom: 0),
+                      child: TextField(
+                        controller: secondController,
+                        decoration: InputDecoration(
+                          labelText: SecondFieldByRedwanoooo
+                        ),
+                      ),),
+                    ElevatedButton(
+                        child: Text('Go', style: TextStyle(
+                          color: Colors.Black,
+                        ),),
+                        onPressed: () {
+                          dynamic textFieldParameter = secondController.text;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SecondScreen(name: "textFieldParameter"),
+                            ),
+                          );
+                        }),
+                  ]),
+                ),
               ),
             ],
           ),
