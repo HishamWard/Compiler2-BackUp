@@ -13,7 +13,7 @@ import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String testFilepath = "tests/TextFields.dart";
+        String testFilepath = "tests/error_test.dart";
 
         // Initialize streams and parser
         CharStream charStream = CharStreams.fromFileName(testFilepath);
