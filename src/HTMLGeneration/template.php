@@ -6,12 +6,12 @@
     <title>Compiler 2</title>
     <style>
     html, body {
-        font-family: Jetbrains Mono;
+        font-family: Helvetica;
         height: 100%;
     }
 
     body {
-        background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+        background: white;
         color: whitesmoke;
         position: relative;
         margin: 0;
