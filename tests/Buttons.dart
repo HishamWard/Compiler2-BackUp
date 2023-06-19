@@ -164,29 +164,29 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(left: 50, top: 50, right: 0, bottom: 0),
-          child: Column(
-            children: [
-              Text(
-                'Hello from Screen 1',
-                style: TextStyle(fontSize: 24.0),
-              ),
-              ElevatedButton(
-                  child: Text('Go Home'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Buttons(),
-                      ),
-                    );
-                  }),
-            ],
-          ),
-        ),
-      ),
-    );
+        color: Colors.orange,
+        child: Column(
+          children: [
+            Text(
+              'Hello from Screen 1',
+              style: TextStyle(fontSize: 24.0, color: Colors.Black,),
+            ),
+            ElevatedButton(
+                child: Text('Go Home', style: TextStyle(color: Colors.Black,)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Buttons(),
+                    ),
+                  );
+                })
+            ,
+          ]
+          ,
+        )
+        ,
+      ),);
   }
 }
 
@@ -195,28 +195,25 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(left: 50, top: 50, right: 0, bottom: 0),
-          child: Column(
-            children: [
-              Text(
-                'Hello from Screen 2',
-                style: TextStyle(fontSize: 24.0),
-              ),
-              ElevatedButton(
-                  child: Text('Go Home'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Buttons(),
-                      ),
-                    );
-                  }),
-            ],
-          ),
+        color: Colors.orange,
+        child: Column(
+          children: [
+            Text(
+              'Hello from Screen 2',
+              style: TextStyle(fontSize: 24.0, color: Colors.Black,),
+            ),
+            ElevatedButton(
+                child: Text('Go Home', style: TextStyle(color: Colors.Black,)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Buttons(),
+                    ),
+                  );
+                }),
+          ],
         ),
-      ),
-    );
+      ),);
   }
 }
