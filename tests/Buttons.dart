@@ -29,7 +29,7 @@ class Buttons extends StatelessWidget {
                   padding:
                   EdgeInsets.only(left: 0, top: 0, right: 70, bottom: 0),
                   child: Text(
-                    "Go to screen 1: ",
+                    'Go to screen 1: ',
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -53,7 +53,7 @@ class Buttons extends StatelessWidget {
                     padding:
                     EdgeInsets.only(left: 0, top: 0, right: 70, bottom: 0),
                     child: Text(
-                      "Go to screen 2: ",
+                      'Go to screen 2: ',
                       style: TextStyle(
                         fontSize: 20,
                       ),
