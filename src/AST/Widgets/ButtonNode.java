@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class ButtonNode extends WidgetNode {
     public String href = "";
+    public boolean insertJS = false;
     public Map<String, String> argumentsToPassForWidget = new HashMap<>();
 
     public ButtonNode(WidgetNode child, BlockNode block) {

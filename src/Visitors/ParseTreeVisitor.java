@@ -18,6 +18,7 @@ import Grammer.Flotter;
 import Grammer.FlotterBaseVisitor;
 import Symbol.SymbolTable;
 import Types.Type;
+import org.antlr.v4.runtime.RuleContext;
 
 import java.util.*;
 
@@ -200,6 +201,18 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         String href = "";
         Map<String, String> argumentsToPassForWidget = new HashMap<>();
 
+        boolean insertJS = false;
+
+        RuleContext parent = ctx.parent;
+        while (parent != null) {
+            if (parent instanceof Flotter.FormContext) {
+                insertJS = true;
+                break;
+            }
+
+            parent = parent.parent;
+        }
+
         for (Flotter.ElevatedButtonPropertyContext propertyContext : ctx.elevatedButtonProperties().elevatedButtonProperty()) {
             if (propertyContext.child() != null) {
                 child = (WidgetNode) visit(propertyContext.child());
@@ -233,6 +246,8 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         }
 
         ButtonNode button = new ButtonNode(child, block);
+        button.insertJS = insertJS;
+
         if(argumentsToPassForWidget != null) {
             button.argumentsToPassForWidget = argumentsToPassForWidget;
         }

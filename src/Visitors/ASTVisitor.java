@@ -21,32 +21,43 @@ public class ASTVisitor {
 
     public void visitButton(ButtonNode button) {
         try {
-            if (!button.href.equals("")) {
-                /**
-                 * We want to transition to another page. Let's consider this as a plain old form like:
-                 *
-                 * <form action="meow.php" method="POST">
-                 *     <input type="hidden" name="meowColor" value="orange" />
-                 *     <button type="submit">Submit me</button>
-                 * </form>
-                 *
-                 * Then we read these values from PHP's $_POST array.
-                 */
-                writer.write("<form method='POST' action='/" + button.href + ".php" + "'>");
-                writer.write("<button type='submit'>");
+            if (button.insertJS) {
+                String onClick = "this.closest('form').action='" + button.href + ".php'";
+                System.out.println(onClick);
+                writer.write("<button onclick=\"" + onClick + "\">");
                 button.getChild(0).accept(this);
                 writer.write("</button>");
+            }
+            else if (!button.href.equals("")) {
+//                writer.write("<form method='POST' action='/" + button.href + ".php" + "'>");
+//                writer.write("<button type='submit'>");
+//                button.getChild(0).accept(this);
+//                writer.write("</button>");
+//
+//                for (Map.Entry<String, String> entry : button.argumentsToPassForWidget.entrySet()) {
+//                    String key = entry.getKey();
+//
+//                    // Strip value from quotes
+//                    String value = entry.getValue().replace("\"", "").replace("'", "");
+//                    String inputString = String.format("<input type='hidden' name='%s' value='%s' />", key, value);
+//                    writer.write(inputString);
+//                }
+//
+//                writer.write("</form>");
 
+                String urlParams = "";
                 for (Map.Entry<String, String> entry : button.argumentsToPassForWidget.entrySet()) {
                     String key = entry.getKey();
 
                     // Strip value from quotes
                     String value = entry.getValue().replace("\"", "").replace("'", "");
-                    String inputString = String.format("<input type='hidden' name='%s' value='%s' />", key, value);
-                    writer.write(inputString);
+                    urlParams += key + "=" + value + "&";
                 }
 
-                writer.write("</form>");
+                String href = "/" + button.href + ".php?" + urlParams;
+                writer.write("<a href='" + href + "'>");
+                button.getChild(0).accept(this);
+                writer.write("</a>");
             } else {
                 writer.write("<button>");
                 button.getChild(0).accept(this);
@@ -192,7 +203,8 @@ public class ASTVisitor {
             double fontSize = node.style.fontSize;
             double fontWeight = node.style.fontWeight;
 
-            String styleText = "font-size: " + fontSize + "px; color: " + color + "; font-weight: " + fontWeight + ";";
+            String styleText = "font-size: " + fontSize + "px; font-weight: " + fontWeight + ";";
+            if (!color.equals("")) styleText += "color: " + color + "; ";
 
             writer.write("<p style='" + styleText + "'>");
             writer.write(node.text);
@@ -219,7 +231,6 @@ public class ASTVisitor {
         try {
             writer.write("<form method='POST' action='MyApp.php'>");
             form.getChild(0).accept(this);
-            writer.write("<button type='submit'>Submit</button>");
             writer.write("</form>");
         } catch (IOException e) {
             throw new RuntimeException(e);
