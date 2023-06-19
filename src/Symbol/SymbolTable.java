@@ -38,7 +38,6 @@ public class SymbolTable {
 
     public boolean variableExists(String name, int scope) {
         return var_table.containsKey(Objects.hash(name + scope));
-        //return var_table.containsKey(Objects.hash(variableName));
     }
 
     public VariableDeclarationNode getVariable(String name, int scope) {
@@ -57,8 +56,8 @@ public class SymbolTable {
 
     //functions
     public void addFunction(FunctionDeclarationNode f) throws RuntimeException {
-        if (functionExists(f.name)) throw new RuntimeException("Function \"" + f.name + "\" already exists.");
-        //no checking for functions to avoid errors
+        if (functionExists(f.name))
+            throw new RuntimeException("Function \"" + f.name + "\" already exists.");
         function_table.put(Objects.hash(f.name), f);
         System.out.printf("SymbolTable entry - [name: %s | scope: %d | type: function]\n", f.name, f.scope);
     }

@@ -13,7 +13,7 @@ import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String testFilepath = "tests/Buttons.dart";
+        String testFilepath = "tests/TextFields.dart";
 
         // Initialize streams and parser
         CharStream charStream = CharStreams.fromFileName(testFilepath);
@@ -31,8 +31,6 @@ public class Main {
 
         HTMLGenerator htmlGenerator = new HTMLGenerator("C:\\xampp\\htdocs");
         htmlGenerator.generateHTMLFromProgram(programNode);
-
-//        SymbolTable.print();
 
         programNode.print(writer);
         writer.close();
