@@ -392,11 +392,6 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
         int scope = symbolTables.peek().getTableScope();
 
         FunctionDeclarationNode functionDeclarationNode = new FunctionDeclarationNode(returnType, name, parameters, override, body, scope);
-
-        if (symbolTables.peek().functionExists(name)) {
-            int currentLine = ctx.getStart().getLine();
-            throw new RuntimeException("Line no." + currentLine + " function " + name + " is already defined");
-        }
         symbolTables.peek().addFunction(functionDeclarationNode);
         return functionDeclarationNode;
     }

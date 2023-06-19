@@ -57,6 +57,7 @@ public class SymbolTable {
 
     //functions
     public void addFunction(FunctionDeclarationNode f) throws RuntimeException {
+        if (functionExists(f.name)) throw new RuntimeException("Function \"" + f.name + "\" already exists.");
         //no checking for functions to avoid errors
         function_table.put(Objects.hash(f.name), f);
         System.out.printf("SymbolTable entry - [name: %s | scope: %d | type: function]\n", f.name, f.scope);
