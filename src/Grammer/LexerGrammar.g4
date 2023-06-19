@@ -97,6 +97,10 @@ MainAxisAlignment2: 'MainAxisAlignment';
 CrossAxisAlignment1: 'crossAxisAlignment';
 CrossAxisAlignment2: 'CrossAxisAlignment';
 
+DECORATION: 'decoration';
+INPUT_DECORATION: 'InputDecoration';
+LABEL_TEXT: 'labelText';
+
 WIDGET: 'Widget';
 BUILD: 'build';
 BUILD_CONTEXT: 'BuildContext';

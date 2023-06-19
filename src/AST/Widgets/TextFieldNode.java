@@ -3,9 +3,15 @@ package AST.Widgets;
 import Visitors.ASTVisitor;
 
 public class TextFieldNode extends WidgetNode{
-    String controllerString;
+    public String label = "";
+    public String controllerString;
     public TextFieldNode(String controllerString){
         this.controllerString = controllerString;
+    }
+
+    public TextFieldNode(String controllerString, String label){
+        this.controllerString = controllerString;
+        this.label = label;
     }
     @Override
     public void accept(ASTVisitor visitor) {

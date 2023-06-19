@@ -4,7 +4,7 @@ import AST.Widgets.WidgetNode;
 import Visitors.ASTVisitor;
 
 public class TextStyleNode extends WidgetNode {
-    public String color = "#fff";
+    public String color = "#000";
     public double fontSize = 16;
     public double fontWeight = 400;
 

@@ -169,7 +169,9 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
                 style = (TextStyleNode) visit(TextProperty.textStyle());
             }
         }
-        return new TextNode(text, style);
+
+        String textWithNoQuotes = text.replace("\"", "").replace("'", "");
+        return new TextNode(textWithNoQuotes, style);
     }
 
     @Override
@@ -275,13 +277,20 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
 
     @Override
     public TextFieldNode visitTextField(Flotter.TextFieldContext ctx) {
-        String controllerString = null;
+        TextFieldNode node = new TextFieldNode("");
+
+
         for (Flotter.TextFieldPropertyContext propertyContext : ctx.textFieldProperties().textFieldProperty()) {
             if (propertyContext.controller() != null) {
-                controllerString = propertyContext.controller().IDENTIFIER().getText();
+                node.controllerString = propertyContext.controller().IDENTIFIER().getText();
+            }
+
+            else if (propertyContext.textFieldDecoration() != null) {
+                node.label = propertyContext.textFieldDecoration().inputDecoration().IDENTIFIER().getText();
             }
         }
-        return new TextFieldNode(controllerString);
+
+        return node;
     }
 
     @Override

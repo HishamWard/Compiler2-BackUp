@@ -62,8 +62,12 @@ body: Body COLON widget;
 
 textField: TextField OPENP textFieldProperties CLOSEP;
 textFieldProperties: textFieldProperty (COMMA textFieldProperty)* COMMA?;
-textFieldProperty: controller;
+textFieldProperty: controller | textFieldDecoration;
+
+textFieldDecoration: DECORATION COLON inputDecoration;
 controller: Controller COLON IDENTIFIER;
+
+inputDecoration: INPUT_DECORATION OPENP LABEL_TEXT COLON IDENTIFIER CLOSEP;
 
 navigator: NavigatorPush OPENP (navContext=CONTEXT COMMA)+ materialpageroute CLOSEP;
 materialpageroute: MaterialPageRoute OPENP Builder COLON OPENP contextRefrence=CONTEXT  CLOSEP EQ GREATER function_call COMMA? CLOSEP COMMA?;

@@ -42,7 +42,6 @@ public class ASTVisitor {
 
                     // Strip value from quotes
                     String value = entry.getValue().replace("\"", "").replace("'", "");
-                    ;
                     String inputString = String.format("<input type='hidden' name='%s' value='%s' />", key, value);
                     writer.write(inputString);
                 }
@@ -205,7 +204,23 @@ public class ASTVisitor {
 
     public void visitTextField(TextFieldNode textField) {
         try {
-            writer.write("<input type='text' />");
+
+            String inputText = "<input type='text'";
+            if (!textField.label.equals("")) inputText += String.format("name='%s' placeholder='%s' />", textField.label, textField.label);
+            else inputText += " />";
+
+            writer.write(inputText);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void visitForm(FormNode form) {
+        try {
+            writer.write("<form method='POST' action='MyApp.php'>");
+            form.getChild(0).accept(this);
+            writer.write("<button type='submit'>Submit</button>");
+            writer.write("</form>");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
