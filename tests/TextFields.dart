@@ -31,7 +31,7 @@ class TextFields extends StatelessWidget {
                 padding: EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 30),
                 child: Text(
                   'TextFields',
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 30, color: Colors.black,),
                 ),
               ),
               Row(children: [
@@ -39,19 +39,26 @@ class TextFields extends StatelessWidget {
                   'Text 1: ',
                   style: TextStyle(
                     fontSize: 20,
+                    color: Colors.Black,
                   ),
                 ),
-                TextField(
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: 5, top: 0, right: 5, bottom: 0),
+                  child: TextField(
                     controller: firstController,
-                ),
+                  ),),
                 ElevatedButton(
-                    child: Text('Go'),
+                    child: Text('Go', style: TextStyle(
+                      color: Colors.Black,
+                    ),),
                     onPressed: () {
                       dynamic textFieldParameter = firstController.text;
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => FirstScreen(name: "textFieldParameter"),
+                          builder: (context) =>
+                              FirstScreen(name: "textFieldParameter"),
                         ),
                       );
                     }),
@@ -63,13 +70,19 @@ class TextFields extends StatelessWidget {
                     'Text 2: ',
                     style: TextStyle(
                       fontSize: 20,
+                      color: Colors.Black,
                     ),
                   ),
-                TextField(
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 5, top: 0, right: 5, bottom: 0),
+                    child: TextField(
                       controller: secondController,
-                ),
+                    ),),
                   ElevatedButton(
-                      child: Text('Go'),
+                      child: Text('Go', style: TextStyle(
+                        color: Colors.Black,
+                      ),),
                       onPressed: () {
                         dynamic textFieldParameter = secondController.text;
                         Navigator.push(
@@ -92,6 +105,7 @@ class TextFields extends StatelessWidget {
 
 class FirstScreen extends StatelessWidget {
   String name = "";
+
   FirstScreen(this.name);
 
   @override
@@ -126,6 +140,7 @@ class FirstScreen extends StatelessWidget {
 
 class SecondScreen extends StatelessWidget {
   String name = "";
+
   SecondScreen(this.name);
 
   @override
