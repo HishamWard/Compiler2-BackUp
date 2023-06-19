@@ -21,10 +21,47 @@ class Buttons extends StatelessWidget {
       body: Container(
         color: Colors.orange,
         child: Padding(
-          padding: EdgeInsets.only(left: 110, top: 100, right: 0, bottom: 0),
+          padding: EdgeInsets.only(left: 100, top: 100, right: 100, bottom: 20),
           child: Column(
             children: [
               Row(children: [
+                Container(
+                  child: Column(
+                      children: [
+                        Container(
+                          child: Text('', style: TextStyle(
+                            color: Colors.black,
+                          ),),
+                          width: 100,
+                          height: 30,
+                          color: Colors.Black,
+                          margin: EdgeInsets.only(
+                              left: 0, top: 20, right: 50, bottom: 0),),
+                        Container(
+                          child: Text('', style: TextStyle(
+                            color: Colors.black,
+                          ),),
+                          width: 150,
+                          height: 30,
+                          color: Colors.Black,
+                          margin: EdgeInsets.only(
+                              left: 0, top: 20, right: 0, bottom: 0),),
+                        Container(
+                          child: Text('', style: TextStyle(
+                            color: Colors.black,
+                          ),),
+                          width: 150,
+                          height: 30,
+                          color: Colors.Black,
+                          margin: EdgeInsets.only(
+                              left: 0, top: 20, right: 0, bottom: 0),),
+                      ]
+                  ),
+                  width: 200,
+                  height: 200,
+                  margin: EdgeInsets.only(
+                      left: 0, top: 0, right: 50, bottom: 0),
+                ),
                 Padding(
                   padding:
                   EdgeInsets.only(left: 0, top: 0, right: 70, bottom: 0),
@@ -32,11 +69,14 @@ class Buttons extends StatelessWidget {
                     'Go to screen 1: ',
                     style: TextStyle(
                       fontSize: 20,
+                      color: Colors.black,
                     ),
                   ),
                 ),
                 ElevatedButton(
-                    child: Text('Go'),
+                    child: Text('Go', style: TextStyle(
+                      color: Colors.black,
+                    ),),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -49,6 +89,43 @@ class Buttons extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 0, top: 50, right: 0, bottom: 0),
                 child: Row(children: [
+                  Container(
+                    child: Column(
+                        children: [
+                          Container(
+                            child: Text('', style: TextStyle(
+                              color: Colors.black,
+                            ),),
+                            width: 100,
+                            height: 30,
+                            color: Colors.Black,
+                            margin: EdgeInsets.only(
+                                left: 0, top: 20, right: 50, bottom: 0),),
+                          Container(
+                            child: Text('', style: TextStyle(
+                              color: Colors.black,
+                            ),),
+                            width: 150,
+                            height: 30,
+                            color: Colors.Black,
+                            margin: EdgeInsets.only(
+                                left: 0, top: 20, right: 0, bottom: 0),),
+                          Container(
+                            child: Text('', style: TextStyle(
+                              color: Colors.black,
+                            ),),
+                            width: 150,
+                            height: 30,
+                            color: Colors.Black,
+                            margin: EdgeInsets.only(
+                                left: 0, top: 20, right: 0, bottom: 0),),
+                        ]
+                    ),
+                    width: 200,
+                    height: 200,
+                    margin: EdgeInsets.only(
+                        left: 0, top: 0, right: 50, bottom: 0),
+                  ),
                   Padding(
                     padding:
                     EdgeInsets.only(left: 0, top: 0, right: 70, bottom: 0),
@@ -56,11 +133,14 @@ class Buttons extends StatelessWidget {
                       'Go to screen 2: ',
                       style: TextStyle(
                         fontSize: 20,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                   ElevatedButton(
-                      child: Text('Go'),
+                      child: Text('Go', style: TextStyle(
+                        color: Colors.black,
+                      ),),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -84,29 +164,29 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(left: 50, top: 50, right: 0, bottom: 0),
-          child: Column(
-            children: [
-              Text(
-                'Hello from Screen 1',
-                style: TextStyle(fontSize: 24.0),
-              ),
-              ElevatedButton(
-                  child: Text('Go Home'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Buttons(),
-                      ),
-                    );
-                  }),
-            ],
-          ),
-        ),
-      ),
-    );
+        color: Colors.orange,
+        child: Column(
+          children: [
+            Text(
+              'Hello from Screen 1',
+              style: TextStyle(fontSize: 24.0, color: Colors.Black,),
+            ),
+            ElevatedButton(
+                child: Text('Go Home', style: TextStyle(color: Colors.Black,)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Buttons(),
+                    ),
+                  );
+                })
+            ,
+          ]
+          ,
+        )
+        ,
+      ),);
   }
 }
 
@@ -115,28 +195,25 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(left: 50, top: 50, right: 0, bottom: 0),
-          child: Column(
-            children: [
-              Text(
-                'Hello from Screen 2',
-                style: TextStyle(fontSize: 24.0),
-              ),
-              ElevatedButton(
-                  child: Text('Go Home'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Buttons(),
-                      ),
-                    );
-                  }),
-            ],
-          ),
+        color: Colors.orange,
+        child: Column(
+          children: [
+            Text(
+              'Hello from Screen 2',
+              style: TextStyle(fontSize: 24.0, color: Colors.Black,),
+            ),
+            ElevatedButton(
+                child: Text('Go Home', style: TextStyle(color: Colors.Black,)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Buttons(),
+                    ),
+                  );
+                }),
+          ],
         ),
-      ),
-    );
+      ),);
   }
 }
