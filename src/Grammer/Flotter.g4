@@ -67,7 +67,7 @@ textFieldProperty: controller | textFieldDecoration;
 textFieldDecoration: DECORATION COLON inputDecoration;
 controller: Controller COLON IDENTIFIER;
 
-inputDecoration: INPUT_DECORATION OPENP LABEL_TEXT COLON IDENTIFIER CLOSEP;
+inputDecoration: INPUT_DECORATION OPENP LABEL_TEXT COLON SingleLineString CLOSEP;
 
 navigator: NavigatorPush OPENP (navContext=CONTEXT COMMA)+ materialpageroute CLOSEP;
 materialpageroute: MaterialPageRoute OPENP Builder COLON OPENP contextRefrence=CONTEXT  CLOSEP EQ GREATER function_call COMMA? CLOSEP COMMA?;

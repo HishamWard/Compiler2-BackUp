@@ -328,7 +328,9 @@ public class ParseTreeVisitor extends FlotterBaseVisitor {
             }
 
             else if (propertyContext.textFieldDecoration() != null) {
-                node.label = propertyContext.textFieldDecoration().inputDecoration().IDENTIFIER().getText();
+                String label = propertyContext.textFieldDecoration().inputDecoration().SingleLineString().getText();
+                String labelWithNoQuotes = label.replace("\"", "").replace("'", "");
+                node.label = labelWithNoQuotes;
             }
         }
 

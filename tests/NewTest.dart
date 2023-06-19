@@ -35,7 +35,7 @@ class TextFields extends StatelessWidget {
                     child: TextField(
                         controller: firstController,
                         decoration: InputDecoration(
-                            labelText: FirstFieldByIyadoooooo
+                            labelText: "FirstField"
                         )
                     ),),
                   ElevatedButton(
@@ -71,7 +71,7 @@ class TextFields extends StatelessWidget {
                       child: TextField(
                         controller: secondController,
                         decoration: InputDecoration(
-                            labelText: SecondFieldByRedwanoooo
+                            labelText: "SecondField"
                         ),
                       ),),
                     ElevatedButton(

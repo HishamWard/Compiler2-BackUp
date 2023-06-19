@@ -49,7 +49,7 @@ class TextFields extends StatelessWidget {
                     child: TextField(
                       controller: firstController,
                       decoration: InputDecoration(
-                        labelText: FirstFieldByIyadoooooo
+                        labelText: "FirstFieldByIyadoooooo"
                       )
                     ),),
                   ElevatedButton(
@@ -85,7 +85,7 @@ class TextFields extends StatelessWidget {
                       child: TextField(
                         controller: secondController,
                         decoration: InputDecoration(
-                          labelText: SecondFieldByRedwanoooo
+                          labelText: "SecondFieldByRedwanoooo"
                         ),
                       ),),
                     ElevatedButton(
@@ -149,9 +149,9 @@ class FirstScreen extends StatelessWidget {
 }
 
 class SecondScreen extends StatelessWidget {
-  String name = "";
+  String name2 = "";
 
-  SecondScreen(this.name);
+  SecondScreen(this.name2);
 
   @override
   Widget build(BuildContext context) {
