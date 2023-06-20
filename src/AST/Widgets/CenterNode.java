@@ -1,7 +1,6 @@
 package AST.Widgets;
 
-import AST.Node;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class CenterNode extends WidgetNode {
     public CenterNode(WidgetNode child) {
@@ -9,7 +8,7 @@ public class CenterNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitCenter(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateCenter(this);
     }
 }

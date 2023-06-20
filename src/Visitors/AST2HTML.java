@@ -8,25 +8,32 @@ import java.io.IOException;
 import java.util.Map;
 
 
-public class ASTVisitor {
+public class AST2HTML {
     private FileWriter writer;
 
-    public ASTVisitor(FileWriter writer) {
+    public AST2HTML(FileWriter writer) {
         this.writer = writer;
     }
 
-    public void visit(Node node) {
+    public void generateHTMLForNode(Node node) {
         node.accept(this);
     }
 
-    public void visitButton(ButtonNode button) {
+    public void generateButton(ButtonNode button) {
         try {
             if (button.insertJS) {
                 String onClick = "this.closest('form').action='" + button.href + ".php'";
-                System.out.println(onClick);
                 writer.write("<button onclick=\"" + onClick + "\">");
                 button.getChild(0).accept(this);
                 writer.write("</button>");
+                for (Map.Entry<String, String> entry : button.argumentsToPassForWidget.entrySet()) {
+                    String key = entry.getKey();
+
+                    // Strip value from quotes
+                    String value = entry.getValue().replace("\"", "").replace("'", "");
+                    String inputString = String.format("<input type='hidden' name='%s' value='%s' />", key, value);
+                    writer.write(inputString);
+                }
             }
             else if (!button.href.equals("")) {
 //                writer.write("<form method='POST' action='/" + button.href + ".php" + "'>");
@@ -68,7 +75,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitScaffold(ScaffoldNode scaffoldNode) {
+    public void generateScaffold(ScaffoldNode scaffoldNode) {
         try {
             writer.write("<div style='min-height: 100vh'>");
             scaffoldNode.getChild(0).accept(this);
@@ -78,7 +85,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitSizedBox(SizedBoxNode sizedBox) {
+    public void generateSizedBox(SizedBoxNode sizedBox) {
         String widthText = "";
         String heightText = "";
 
@@ -97,7 +104,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitContainer(ContainerNode container) {
+    public void generateContainer(ContainerNode container) {
         String paddingText = "";
         String marginText = "";
         String heightText = "";
@@ -134,7 +141,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitPadding(PaddingNode padding) {
+    public void generatePadding(PaddingNode padding) {
         try {
             String paddingText = String.format("padding: %spx %spx %spx %spx", padding.padding[1], padding.padding[2], padding.padding[3], padding.padding[0]);
             writer.write("<div style='" + paddingText + "'>");
@@ -145,7 +152,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitRow(RowNode row) {
+    public void generateRow(RowNode row) {
         String alignmentString = "";
         if (row.mainAxisAlignment != null) {
             alignmentString += "justify-content: " + row.mainAxisAlignment.getName() + "; ";
@@ -166,7 +173,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitColumn(ColumnNode column) {
+    public void generateColumn(ColumnNode column) {
         try {
             String alignmentString = "";
             if (column.mainAxisAlignment != null) {
@@ -187,7 +194,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitCenter(CenterNode center) {
+    public void generateCenter(CenterNode center) {
         try {
             writer.write("<div style='display: flex; justify-content: center; align-items: center'>");
             center.getChild(0).accept(this);
@@ -197,7 +204,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitText(TextNode node) {
+    public void generateText(TextNode node) {
         try {
             String color = node.style.color;
             double fontSize = node.style.fontSize;
@@ -214,7 +221,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitTextField(TextFieldNode textField) {
+    public void generateTextField(TextFieldNode textField) {
         try {
 
             String inputText = "<input type='text'";
@@ -227,7 +234,7 @@ public class ASTVisitor {
         }
     }
 
-    public void visitForm(FormNode form) {
+    public void generateForm(FormNode form) {
         try {
             writer.write("<form method='POST' action='MyApp.php'>");
             form.getChild(0).accept(this);

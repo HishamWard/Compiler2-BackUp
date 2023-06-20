@@ -2,7 +2,7 @@ package AST.Variables;
 
 import AST.ExpressionNode;
 import AST.Node;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class VariableAssignNode extends ExpressionNode {
     public Node left;
@@ -24,7 +24,7 @@ public class VariableAssignNode extends ExpressionNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 }

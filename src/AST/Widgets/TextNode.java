@@ -1,7 +1,7 @@
 package AST.Widgets;
 
 import AST.Widgets.Style.TextStyleNode;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class TextNode extends WidgetNode {
     public final String text;
@@ -17,8 +17,8 @@ public class TextNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitText(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateText(this);
     }
 
     @Override

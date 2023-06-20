@@ -1,7 +1,7 @@
 package HTMLGeneration;
 
 import AST.ProgramNode;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -29,12 +29,12 @@ public class HTMLGenerator {
             try {
                 String outputFilename = Path.of(outputDirectory, widgetClassName + ".php").toString();
                 FileWriter astWriter = new FileWriter(outputFilename);
-                ASTVisitor astVisitor = new ASTVisitor(astWriter);
+                AST2HTML astVisitor = new AST2HTML(astWriter);
                 writeScriptsBoilerplateToFile(astWriter);
 
                 System.out.println("🚥 Generating HTML + PHP for '" + widgetClassName + "' widget.");
 
-                astVisitor.visit(widgetAST);
+                astVisitor.generateHTMLForNode(widgetAST);
                 astWriter.write("</body>\n</html>");
                 astWriter.close();
 

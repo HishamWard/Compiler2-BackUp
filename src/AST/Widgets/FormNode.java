@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class FormNode extends WidgetNode {
     public FormNode(WidgetNode child) {
@@ -8,7 +8,7 @@ public class FormNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitForm(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateForm(this);
     }
 }

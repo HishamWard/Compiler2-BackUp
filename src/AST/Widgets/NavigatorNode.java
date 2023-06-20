@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 
 public class NavigatorNode extends WidgetNode {
@@ -13,7 +13,7 @@ public class NavigatorNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
     }
 
     @Override

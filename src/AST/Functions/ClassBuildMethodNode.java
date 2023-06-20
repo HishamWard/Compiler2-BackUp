@@ -1,12 +1,8 @@
 package AST.Functions;
 
-import AST.BlockNode;
 import AST.ExpressionNode;
-import AST.Node;
 import AST.Widgets.WidgetNode;
-import Visitors.ASTVisitor;
-
-import java.util.LinkedList;
+import Visitors.AST2HTML;
 
 public class ClassBuildMethodNode extends ExpressionNode {
     public final String returnType;
@@ -23,7 +19,7 @@ public class ClassBuildMethodNode extends ExpressionNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 

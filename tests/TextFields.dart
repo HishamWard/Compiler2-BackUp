@@ -49,9 +49,18 @@ class TextFields extends StatelessWidget {
                     child: TextField(
                       controller: firstController,
                       decoration: InputDecoration(
-                        labelText: "FirstFieldByIyadoooooo"
+                        labelText: "FirstField"
                       )
                     ),),
+                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 5, top: 0, right: 5, bottom: 0),
+                                        child: TextField(
+                                          controller: firstController,
+                                          decoration: InputDecoration(
+                                            labelText: "ThirdField"
+                                          )
+                                        ),),
                   ElevatedButton(
                       child: Text('Go', style: TextStyle(
                         color: Colors.Black,
@@ -85,7 +94,7 @@ class TextFields extends StatelessWidget {
                       child: TextField(
                         controller: secondController,
                         decoration: InputDecoration(
-                          labelText: "SecondFieldByRedwanoooo"
+                          labelText: "SecondField"
                         ),
                       ),),
                     ElevatedButton(

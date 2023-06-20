@@ -1,7 +1,7 @@
 package AST.Widgets;
 
 import AST.BlockNode;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +17,8 @@ public class ButtonNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitButton(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateButton(this);
     }
 
     @Override

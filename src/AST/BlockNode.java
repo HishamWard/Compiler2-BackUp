@@ -1,5 +1,5 @@
 package AST;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.util.LinkedList;
 
@@ -13,7 +13,7 @@ public class BlockNode extends ExpressionNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 }

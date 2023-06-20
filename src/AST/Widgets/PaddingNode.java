@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class PaddingNode extends WidgetNode {
     public float[] padding;
@@ -10,8 +10,8 @@ public class PaddingNode extends WidgetNode {
         this.addChild(child);
     }
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitPadding(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generatePadding(this);
     }
 
     @Override

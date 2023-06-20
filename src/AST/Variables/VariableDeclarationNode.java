@@ -2,7 +2,7 @@ package AST.Variables;
 
 import AST.Node;
 import Types.Type;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class VariableDeclarationNode extends Node {
 	public Integer position;
@@ -28,7 +28,7 @@ public class VariableDeclarationNode extends Node {
 	}
 
 	@Override
-	public void accept(ASTVisitor visitor) {
+	public void accept(AST2HTML visitor) {
 
 	}
 }

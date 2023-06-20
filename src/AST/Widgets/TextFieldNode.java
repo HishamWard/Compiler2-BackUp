@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class TextFieldNode extends WidgetNode{
     public String label = "";
@@ -14,8 +14,8 @@ public class TextFieldNode extends WidgetNode{
         this.label = label;
     }
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitTextField(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateTextField(this);
     }
     @Override
     protected String nodeInfo() {

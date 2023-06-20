@@ -2,8 +2,7 @@ package AST.Functions;
 
 import AST.BlockNode;
 import AST.ExpressionNode;
-import AST.Node;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.util.LinkedList;
 
@@ -26,7 +25,7 @@ public class FunctionDeclarationNode extends ExpressionNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 

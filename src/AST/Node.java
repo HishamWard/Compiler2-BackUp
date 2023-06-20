@@ -1,6 +1,6 @@
 package AST;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.io.FileWriter;
 import java.util.LinkedList;
@@ -56,5 +56,5 @@ public abstract class Node {
         return String.format("%s", this.getClass().getSimpleName());
     }
 
-    public abstract void accept(ASTVisitor visitor);
+    public abstract void accept(AST2HTML visitor);
 }

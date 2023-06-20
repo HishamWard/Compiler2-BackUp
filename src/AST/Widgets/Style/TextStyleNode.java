@@ -1,7 +1,7 @@
 package AST.Widgets.Style;
 
 import AST.Widgets.WidgetNode;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class TextStyleNode extends WidgetNode {
     public String color = "";
@@ -21,7 +21,7 @@ public class TextStyleNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 }

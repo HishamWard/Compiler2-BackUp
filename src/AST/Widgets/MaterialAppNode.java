@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class MaterialAppNode extends WidgetNode{
     public String title;
@@ -10,7 +10,7 @@ public class MaterialAppNode extends WidgetNode{
         this.title = title;
     }
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
     @Override

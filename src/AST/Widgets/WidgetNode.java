@@ -1,9 +1,9 @@
 package AST.Widgets;
 
 import AST.Node;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public abstract class WidgetNode extends Node {
 
-    public abstract void accept(ASTVisitor visitor);
+    public abstract void accept(AST2HTML visitor);
 }

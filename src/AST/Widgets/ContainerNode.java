@@ -1,6 +1,6 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class ContainerNode  extends WidgetNode  {
     public float width;
@@ -33,8 +33,8 @@ public class ContainerNode  extends WidgetNode  {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitContainer(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateContainer(this);
     }
 
     @Override

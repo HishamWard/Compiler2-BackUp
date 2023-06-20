@@ -1,7 +1,7 @@
 package AST;
 
 import AST.Widgets.WidgetNode;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
 public class ProgramNode extends Node {
     public final Map<String, WidgetNode> widgetNodesMap = new HashMap<>();
     @Override
-    public void accept(ASTVisitor visitor) {
+    public void accept(AST2HTML visitor) {
 
     }
 

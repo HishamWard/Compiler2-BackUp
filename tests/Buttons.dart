@@ -81,7 +81,7 @@ class Buttons extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => FirstScreen(),
+                          builder: (context) => FirstScreen(name: "hasan"),
                         ),
                       );
                     }),

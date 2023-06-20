@@ -1,14 +1,14 @@
 package AST.Widgets;
 
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 public class ScaffoldNode extends WidgetNode{
     public ScaffoldNode(WidgetNode body){
         this.addChild(body);
     }
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitScaffold(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateScaffold(this);
     }
     @Override
     protected String nodeInfo() {

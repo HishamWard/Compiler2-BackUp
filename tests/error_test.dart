@@ -8,20 +8,20 @@
 //     String x = "Hi";
 //   }
 // }
-
-
+//
+//
 // class test {
 //   void func() {
 //     String x = "Hi";
 //   }
-//
-//
+
+
 //   void func() {
 //     String x = "Hi, again";
 //   }
 // }
-
-
+//
+//
 // class test {
 //   void func() {
 //     x = "Hi";
@@ -41,9 +41,9 @@
 // a = "Hi";
 
 
-// double a = 5;
-// double a = 6;
+double a = 5;
+double a = 6;
 
 
-// double a = 5;
-// String b = a;
+double a = 5;
+String b = a;

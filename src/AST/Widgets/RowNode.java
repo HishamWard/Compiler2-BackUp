@@ -1,8 +1,7 @@
 package AST.Widgets;
 
-import AST.Node;
 import AST.Widgets.Style.AxisAlignment;
-import Visitors.ASTVisitor;
+import Visitors.AST2HTML;
 
 import java.util.List;
 
@@ -20,8 +19,8 @@ public class RowNode extends WidgetNode {
     }
 
     @Override
-    public void accept(ASTVisitor visitor) {
-        visitor.visitRow(this);
+    public void accept(AST2HTML visitor) {
+        visitor.generateRow(this);
     }
 
     @Override
